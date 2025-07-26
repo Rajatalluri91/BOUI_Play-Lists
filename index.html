@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>BOUI Music Albums</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom right, #111, #333);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      font-size: 2em;
+    }
+
+    .album-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .album {
+      background: #1e1e1e;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      padding: 20px;
+      width: 250px;
+      height: 300px;
+      text-align: center;
+      animation: bounceIn 1.2s ease-out forwards;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-sizing: border-box;
+    }
+
+   .image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  border-radius: 10px;
+  background: #333;
+}
+
+.image-wrapper.loading::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, #2e2e2e 25%, #444 50%, #2e2e2e 75%);
+  background-size: 200% 100%;
+  animation: shimmerLoad 1.2s infinite;
+  border-radius: 10px;
+}
+
+@keyframes shimmerLoad {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.image-wrapper img {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+    .image-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 10px;
+      display: block;
+    }
+
+    .reflection {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.15), transparent);
+      transform: scaleY(-1);
+      opacity: 0.25;
+      pointer-events: none;
+      border-radius: 10px;
+    }
+
+    .album h2 {
+      margin: 10px 0 0 0;
+      color: #00ffcc;
+      font-size: 1.2em;
+    }
+
+    @keyframes bounceIn {
+      0% {
+        transform: scale(0.8);
+        opacity: 0;
+      }
+      60% {
+        transform: scale(1.05);
+        opacity: 1;
+      }
+      80% {
+        transform: scale(0.95);
+        opacity: 1;
+      }
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+    .album {
+  position: relative; /* NEW */
+  overflow: hidden;   /* NEW */
+}
+
+.album::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    120deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    transparent 100%
+  );
+  transform: rotate(25deg);
+  animation: shimmer 3s infinite;
+  pointer-events: none;
+}
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%) rotate(25deg);
+  }
+  100% {
+    transform: translateX(100%) rotate(25deg);
+  }
+}
+.album:hover,
+.album:active {
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(0, 255, 204, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+
+
+  </style>
+</head>
+<body>
+
+  <h1>🎧 BOUI Music Playlist</h1>
+
+  <div class="album-container">
+    <div class="album" onclick="location.href='https://rajatalluri91.github.io/BOUI_Player_Latest/'">
+      <div class="image-wrapper">
+        <img src="https://i.pinimg.com/736x/49/9f/18/499f18cfad6f432a664ffec99ed01790.jpg" alt="BOUI SONGS">
+        <div class="reflection"></div>
+      </div>
+      <h2>BOUI SONGS</h2>
+    </div>
+
+    <div class="album" onclick="location.href='https://rajatalluri91.github.io/BOUI_Tracks/'">
+      <div class="image-wrapper">
+        <img src="https://i.pinimg.com/736x/47/7d/64/477d645ec88103f22c93ada8d3ddcb09.jpg" alt="BOUI TRACKS">
+        <div class="reflection"></div>
+      </div>
+      <h2>BOUI TRACKS</h2>
+    </div>
+  </div>
+<br><br>
+<script>
+  document.querySelectorAll('.image-wrapper').forEach(wrapper => {
+    wrapper.classList.add('loading');
+    const img = wrapper.querySelector('img');
+    img.onload = () => {
+      wrapper.classList.remove('loading');
+      img.style.opacity = '1';
+    };
+  });
+</script>
+
+</body>
+</html>
